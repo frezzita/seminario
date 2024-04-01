@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<div th:insert="~{layout_top}"></div>
+	
+	<div class="container mt-4">
+	    <h2>View Expenses</h2>
+	    <div class="card">
+	        <div class="card-body">
+	            <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="expense : ${expenses}">
+                            <td th:text="${expense.description}"></td>
+                            <td th:text="${expense.amount}"></td>
+                            <td th:text="${expense.date}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+	        </div>
+	    </div>
+	</div>
+
+	<div th:inset="~{layout_bottom}"></div>
+</html>

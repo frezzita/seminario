@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+	<div th:insert="~{layout_top}"></div>
+
+    <div class="card">
+        <div class="card-body">
+            <h1>Buidling</h1>
+            <p>This is the status of the expenses:</p>
+            <form action="/save-config" method="post">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Apartment</th>
+                            <th>Percentage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <th:block th:each="c : ${config}"></th:block>
+                        <tr th:each="c : ${config}">
+                            <!-- <td th:text="${c.apartment}"></td> -->
+                            <td><input type="text" name="apartment[${c.id}]" th:value="${c.apartment}" required></td>
+                            <td><input type="text" name="percentage[${c.id}]" th:value="${c.percentage}" required></td>
+                        </tr>
+                        <tr th:if="${config.isEmpty()}">
+                            <td><input type="text" name="apartment[0]" required></td>
+                            <td><input type="text" name="percentage[0]" required></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button type="button" class="btn btn-success" onclick="addRow()">Add Row</button>
+                <button type="button" class="btn btn-danger" onclick="deleteRow()">Delete Row</button>
+                <button type="submit" class="btn btn-primary" id="saveButton" disabled>Save</button>
+                <script>
+                    function addRow() {
+                        var table = document.querySelector('.table');
+                        var tbody = table.querySelector('tbody');
+                        // var newRow = document.getElementById('newRow').cloneNode(true);
+                        var lastRow = table.tBodies[0].lastElementChild;
+                        var newRow = lastRow.cloneNode(true);
+
+                        // Get the next ID by extracting the number between the square brackets
+                        var currentId = lastRow.querySelector('input[name^="apartment["]').getAttribute('name');
+                        var nextId = parseInt(currentId.match(/\[(.*?)\]/)[1]) + 1;
+
+                        // Set the name of the cloned row to the next available ID
+                        newRow.querySelector('input[name^="apartment["]').setAttribute('name', 'apartment[' + nextId + ']');
+                        newRow.querySelector('input[name^="percentage["]').setAttribute('name', 'percentage[' + nextId + ']');
+
+                        tbody.appendChild(newRow);
+                    }
+                    function deleteRow() {
+                        // remove last row of the table
+                        var table = document.querySelector('.table');
+                        var lastRow = table.rows[table.rows.length - 1];
+                        if (lastRow && lastRow.rowIndex > 1) {
+                            table.deleteRow(lastRow.rowIndex);
+                        }
+                    }
+
+                    // on percentage input change recalculate the total percentages and check if its equal to 100
+                    document.querySelectorAll('input[name^="percentage["]').forEach(function (input) {
+                        input.addEventListener('change', function () {
+                            var total = 0;
+                            document.querySelectorAll('input[name^="percentage["]').forEach(function (input) {
+                                total += parseInt(input.value);
+                            });
+                            if (total !== 100) {
+                                alert('Total percentage must be 100');
+                            } else {
+                                document.getElementById('saveButton').disabled = false;
+                            }
+                        });
+                    });
+
+                </script>
+            </form>
+        </div>
+    </div>
+
+	<div th:insert="~{layout_bottom}"></div>
+</html>
+

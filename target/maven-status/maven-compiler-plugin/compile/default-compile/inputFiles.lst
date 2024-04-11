@@ -1,7 +1,9 @@
 C:\1\Seminario\expman\src\main\java\com\example\demo\ExpmanApplication.java
 C:\1\Seminario\expman\src\main\java\com\example\demo\controller\HomeController.java
-C:\1\Seminario\expman\src\main\java\com\example\demo\controller\HomeControllerTest.java
 C:\1\Seminario\expman\src\main\java\com\example\demo\controller\ErrorController.java
 C:\1\Seminario\expman\src\main\java\com\example\demo\repository\ExpenseRepository.java
 C:\1\Seminario\expman\src\main\java\com\example\demo\controller\ExpenseController.java
+C:\1\Seminario\expman\src\main\java\com\example\demo\controller\ConfigController.java
+C:\1\Seminario\expman\src\main\java\com\example\demo\model\Config.java
+C:\1\Seminario\expman\src\main\java\com\example\demo\repository\ConfigRepository.java
 C:\1\Seminario\expman\src\main\java\com\example\demo\model\Expense.java

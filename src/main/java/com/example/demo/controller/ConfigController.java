@@ -28,8 +28,8 @@ public class ConfigController {
 	
     @GetMapping("/config")
     public String home(Model model) {
-        List<Config> config = configRepository.findAll();
-        model.addAttribute("config", config);
+        // List<Config> config = configRepository.findAll();
+        // model.addAttribute("config", config);
         return "config";
     }
     

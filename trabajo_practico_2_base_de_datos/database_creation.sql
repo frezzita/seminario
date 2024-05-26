@@ -4,6 +4,26 @@ CREATE DATABASE gestion_expensas;
 -- Uso de la base de datos
 USE gestion_expensas;
 
+-- Tabla administrador
+CREATE TABLE Administrador (
+    administrador_id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    telefono VARCHAR(20) NOT NULL
+);
+
+-- Insertar datos en la tabla Administrador
+INSERT INTO Administrador (nombre, apellido, email, telefono) VALUES ('Juan', 'Perez', 'jperez@mail.com', '123456789');
+INSERT INTO Administrador (nombre, apellido, email, telefono) VALUES ('Maria', 'Gomez', 'mgomez@mail.com', '987654321');
+INSERT INTO Administrador (nombre, apellido, email, telefono) VALUES ('Carlos', 'Rodriguez', 'crodriguez@mail.com', '555555555');
+
+-- Borrado de datos de la tabla Administrador
+DELETE FROM Administrador WHERE administrador_id = 3;
+
+-- Consulta de datos de la tabla Administrador
+SELECT * FROM Administrador;
+
 -- Tabla Edificio
 CREATE TABLE Edificio (
     edificio_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -76,27 +96,6 @@ DELETE FROM Expensa WHERE expensa_id = 8;
 
 -- Consulta de datos de la tabla Expensa
 SELECT * FROM Expensa;
-
--- Tabla administrador
-CREATE TABLE Administrador (
-    administrador_id INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    apellido VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    telefono VARCHAR(20) NOT NULL
-);
-
--- Insertar datos en la tabla Administrador
-INSERT INTO Administrador (nombre, apellido, email, telefono) VALUES ('Juan', 'Perez', 'jperez@mail.com', '123456789');
-INSERT INTO Administrador (nombre, apellido, email, telefono) VALUES ('Maria', 'Gomez', 'mgomez@mail.com', '987654321');
-INSERT INTO Administrador (nombre, apellido, email, telefono) VALUES ('Carlos', 'Rodriguez', 'crodriguez@mail.com', '555555555');
-
--- Borrado de datos de la tabla Administrador
-DELETE FROM Administrador WHERE administrador_id = 3;
-
--- Consulta de datos de la tabla Administrador
-SELECT * FROM Administrador;
-
 
 -- Creación de la vista para ver el resultado mensual
 CREATE VIEW ResultadoMensual AS

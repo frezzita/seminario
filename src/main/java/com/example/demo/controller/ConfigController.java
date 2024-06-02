@@ -35,8 +35,15 @@ public class ConfigController {
     
     @GetMapping("/view-config")
     public String viewConfig(Model model) {
-        List<Config> config = configRepository.findAll();
+        List<Config> config = configRepository.getConfigForBuilding(1);
+
+        if (config.isEmpty()) {
+            // Add empty config
+            Config emptyConfig = new Config("", 0, 0);
+        }
+        
         model.addAttribute("config", config);
+
         return "view_config";
     }
 

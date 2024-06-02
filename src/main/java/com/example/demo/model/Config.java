@@ -60,4 +60,14 @@ public class Config {
     public void setId_building(int id_building) {
         this.id_building = id_building;
     }
+
+    @Override
+    public String toString() {
+        return "Config{" +
+                "id=" + id +
+                ", apartment='" + apartment + '\'' +
+                ", percentage=" + percentage +
+                ", id_building=" + id_building +
+                '}';
+    }
 }

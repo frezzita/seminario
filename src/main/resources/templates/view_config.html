@@ -16,8 +16,8 @@
                     </thead>
                     <tbody>
                         <tr th:each="c : ${config}">
-                            <td><input type="text" th:name="apartment[${c.id}]" th:value="${c.apartment}" required></td>
-                            <td><input type="text" th:name="percentage[${c.id}]" th:value="${c.percentage}" required onblur="recalculateTotals()"></td>
+                            <td><input type="text" th:attr="name='apartment[' + ${c.id} + ']'" th:value="${c.apartment}" required></td>
+                            <td><input type="text" th:attr="name='percentage[' + ${c.id} + ']'" th:value="${c.percentage}" required onblur="recalculateTotals()"></td>
                         </tr>
                         <tr th:if="${config.isEmpty()}">
                             <td><input type="text" name="apartment[0]" required></td>

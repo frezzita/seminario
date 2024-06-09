@@ -2,17 +2,20 @@ package classes;
 
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 
 public class AdministradorExpensas {
     public static void iniciar() {
         Scanner scanner = new Scanner(System.in);
 
-        Edificio edificio_s21 = new Edificio(0, "Edificio Siglo 21", "Libertador 1234", 0);
+        Edificio edificio_s21 = new Edificio();
+        edificio_s21.agregarEdificio(0, "Edificio Siglo 21", "Libertador 1234", 0);
         boolean ejecutando = true; 
 
         ArrayList<Departamento> departamentos = new ArrayList<>();
         ArrayList<Expensa> expensas = new ArrayList<>();
-        Administrador administrador = new Administrador(0, "Juan", "Perez", "juanperez@gmail.com", "1234567890");
+        Administrador administrador = new Administrador();
+        administrador.agregarAdministrador(0, "Juan", "Perez", "juanperez@gmail.com", "1234567890");
 
         while (ejecutando) {
             System.out.println("_______________________________");
@@ -37,19 +40,32 @@ public class AdministradorExpensas {
             switch (opcion) {
                 case 1 -> {
                     System.out.print("Piso del departamento: ");
-                    int piso = scanner.nextInt();
+                    int piso = 0;
+                    try {
+                        piso = scanner.nextInt();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Error: Ingrese un valor entero valido para el piso del departamento. Vuelva a intentarlo:");
+                        scanner.nextLine();
+                    }
                     scanner.nextLine();
 
                     System.out.print("Numero o letra del departamento: ");
                     String numero = scanner.nextLine();
 
                     System.out.print("Porcentaje de participacion: ");
-                    double porcentajeParticipacion = scanner.nextDouble();
+                    double porcentajeParticipacion = 0;
+                    try {
+                        porcentajeParticipacion = scanner.nextDouble();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Error: Ingrese un valor numerico valido para el porcentaje de participacion. Vuelva a intentarlo:");
+                        scanner.nextLine(); // Clear the input buffer
+                    }
 
                     // departamento id = length of array
                     int departamentoId = departamentos.size();
 
-                    Departamento nuevoDepartamento = new Departamento(departamentoId, numero, piso, edificio_s21.getEdificioId(), porcentajeParticipacion);
+                    Departamento nuevoDepartamento = new Departamento();
+                    nuevoDepartamento.agregarDepartamento(departamentoId, numero, piso, edificio_s21.getEdificioId(), porcentajeParticipacion);
 
                     departamentos.add(nuevoDepartamento);
 
@@ -58,7 +74,19 @@ public class AdministradorExpensas {
 
                 case 2 -> {
                     System.out.print("Ingrese el id del departamento a modificar: ");
-                    int idDepartamento = scanner.nextInt();
+
+                    int idDepartamento = 0;
+                    
+                    try {
+                        idDepartamento = scanner.nextInt();
+                        // Rest of the code
+                    } catch (InputMismatchException e) {
+                        System.out.println("Error: Ingrese un valor entero valido para el id del departamento. Vuelva a intentarlo:");
+                        scanner.nextLine(); 
+                        continue;
+
+
+                    }
 
                     Departamento departamentoAModificar = null;
 
@@ -70,18 +98,30 @@ public class AdministradorExpensas {
 
                     if (departamentoAModificar != null) {
                         System.out.print("Piso del departamento: ");
-                        int nuevoPiso = scanner.nextInt();
+                        int nuevoPiso = 0;
+                        try {
+                            nuevoPiso = scanner.nextInt();
+                        } catch (InputMismatchException e) {
+                            System.out.println("Error: Ingrese un valor entero valido para el piso del departamento. Vuelva a intentarlo:");
+                            scanner.nextLine(); // Clear the input buffer
+                            continue;
+                        }
                         scanner.nextLine();
     
                         System.out.print("Numero o letra del departamento: ");
                         String nuevoNumero = scanner.nextLine();
     
                         System.out.print("Porcentaje de participacion: ");
-                        double nuevoPorcentajeParticipacion = scanner.nextDouble();
+                        double nuevoPorcentajeParticipacion = 0;
+                        try {
+                            nuevoPorcentajeParticipacion = scanner.nextDouble();
+                        } catch (InputMismatchException e) {
+                            System.out.println("Error: Ingrese un valor numerico valido para el porcentaje de participacion. Vuelva a intentarlo:");
+                            scanner.nextLine(); // Clear the input buffer
+                            continue;
+                        }
 
-                        departamentoAModificar.setPiso(nuevoPiso);
-                        departamentoAModificar.setNumero(nuevoNumero);
-                        departamentoAModificar.setPorcentajeParticipacion(nuevoPorcentajeParticipacion);
+                        departamentoAModificar.modificarDepartamento(idDepartamento, nuevoNumero, nuevoPiso, edificio_s21.getEdificioId(), nuevoPorcentajeParticipacion);
 
                         System.out.println("Departamento modificado con exito");
                     } else {
@@ -102,7 +142,15 @@ public class AdministradorExpensas {
 
                 case 4 -> {
                     System.out.print("Ingrese el id del departamento a eliminar: ");
-                    int idDepartamento = scanner.nextInt();
+                    int idDepartamento = 0;
+                    try {
+                        idDepartamento = scanner.nextInt();
+                        // Rest of the code
+                    } catch (InputMismatchException e) {
+                        System.out.println("Error: Ingrese un valor entero valido para el id del departamento. Vuelva a intentarlo:");
+                        scanner.nextLine(); // Clear the input buffer
+                        continue;
+                    }
 
                     Departamento departamentoAEliminar = null;
 
@@ -113,6 +161,7 @@ public class AdministradorExpensas {
                     }
 
                     if (departamentoAEliminar != null) {
+                        departamentoAEliminar.eliminarDepartamento(idDepartamento);
                         departamentos.remove(departamentoAEliminar);
                         System.out.println("Departamento eliminado con exito");
                     } else {
@@ -121,9 +170,15 @@ public class AdministradorExpensas {
                 }
                 
                 case 5 -> {
-
                     System.out.print("Monto de la expensa: ");
-                    double monto = scanner.nextDouble();
+                    double monto = 0;
+                    try {
+                        monto = scanner.nextDouble();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Error: Ingrese un valor numerico valido para el monto de la expensa. Vuelva a intentarlo:");
+                        scanner.nextLine(); // Clear the input buffer
+                        continue;
+                    }
                     scanner.nextLine();
 
                     System.out.print("Fecha de la expensa (ddmmaaaa): ");
@@ -135,7 +190,8 @@ public class AdministradorExpensas {
                     // expensa id = length of array
                     int expensaId = expensas.size();
 
-                    Expensa nuevaExpensa = new Expensa(expensaId, fecha, monto, concepto, edificio_s21.getEdificioId());
+                    Expensa nuevaExpensa = new Expensa();
+                    nuevaExpensa.agregarExpensa(expensaId, fecha, monto, concepto, edificio_s21.getEdificioId());
 
                     expensas.add(nuevaExpensa);
 
@@ -145,7 +201,14 @@ public class AdministradorExpensas {
 
                 case 6 -> {
                     System.out.print("Ingrese el id de la expensa a modificar: ");
-                    int idExpensa = scanner.nextInt();
+                    int idExpensa = 0;
+                    try {
+                        idExpensa = scanner.nextInt();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Error: Ingrese un valor entero valido para el id de la expensa. Vuelva a intentarlo:");
+                        scanner.nextLine(); // Clear the input buffer
+                        continue;
+                    }
 
                     Expensa expensaAModificar = null;
 
@@ -157,7 +220,14 @@ public class AdministradorExpensas {
 
                     if (expensaAModificar != null) {
                         System.out.print("Nuevo monto de la expensa: ");
-                        double nuevoMonto = scanner.nextDouble();
+                        double nuevoMonto = 0;
+                        try {
+                            nuevoMonto = scanner.nextDouble();
+                        } catch (InputMismatchException e) {
+                            System.out.println("Error: Ingrese un valor numerico valido para el monto de la expensa. Vuelva a intentarlo:");
+                            scanner.nextLine(); // Clear the input buffer
+                            continue;
+                        }
                         scanner.nextLine();
 
                         System.out.print("Nuevo concepto de la expensa: ");
@@ -166,9 +236,7 @@ public class AdministradorExpensas {
                         System.out.print("Nueva fecha de la expensa (ddmmaaaa): ");
                         String nuevaFecha = scanner.nextLine();
 
-                        expensaAModificar.setFecha(nuevaFecha);
-                        expensaAModificar.setMonto(nuevoMonto);
-                        expensaAModificar.setConcepto(nuevoConcepto);
+                        expensaAModificar.modificarExpensa(idExpensa, nuevaFecha, nuevoMonto, nuevoConcepto, edificio_s21.getEdificioId());
 
                         System.out.println("Expensa modificada con exito");
                     } else {
@@ -188,7 +256,14 @@ public class AdministradorExpensas {
                 
                 case 8 -> {
                     System.out.print("Ingrese el id de la expensa a eliminar: ");
-                    int idExpensa = scanner.nextInt();
+                    int idExpensa = 0;
+                    try {
+                        idExpensa = scanner.nextInt();
+                    } catch (InputMismatchException e) {
+                        System.out.println("Error: Ingrese un valor entero valido para el id de la expensa. Vuelva a intentarlo:");
+                        scanner.nextLine(); // Clear the input buffer
+                        continue;
+                    }
 
                     Expensa expensaAEliminar = null;
 
@@ -199,6 +274,7 @@ public class AdministradorExpensas {
                     }
 
                     if (expensaAEliminar != null) {
+                        expensaAEliminar.eliminarExpensa(idExpensa);
                         expensas.remove(expensaAEliminar);
                         System.out.println("Expensa eliminada con exito");
                     } else {

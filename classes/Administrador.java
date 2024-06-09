@@ -7,13 +7,7 @@ public class Administrador {
     private String email;
     private String telefono;
 
-    public Administrador(int administradorId, String nombre, String apellido, String email, String telefono) {
-        this.administradorId = administradorId;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.email = email;
-        this.telefono = telefono;
-    }
+    public Administrador() {}
 
     public int getAdministradorId() {
         return administradorId;
@@ -53,5 +47,35 @@ public class Administrador {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public void agregarAdministrador(int administradorId, String nombre, String apellido, String email, String telefono) {
+        this.administradorId = administradorId;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.telefono = telefono;
+        
+        // Agregar administrador a la base de datos
+    }
+
+    public void modificarAdministrador(int administradorId, String nombre, String apellido, String email, String telefono) {
+        this.administradorId = administradorId;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.telefono = telefono;
+        
+        // Modificar administrador en la base de datos
+    }
+
+    public void eliminarAdministrador(int administradorId) {
+        this.administradorId = 0;
+        this.nombre = "";
+        this.apellido = "";
+        this.email = "";
+        this.telefono = "";
+        
+        // Eliminar administrador de la base de datos
     }
 }

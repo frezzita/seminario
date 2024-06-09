@@ -1,24 +1,23 @@
 package classes;
 
+import classes.Departamento;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Edificio {
-    private int edificioId;
+    private int edificio_id;
     private String nombre;
     private String direccion;
     private int administradorId;
 
-    public Edificio(int edificioId, String nombre, String direccion, int administradorId) {
-        this.edificioId = edificioId;
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.administradorId = administradorId;
-    }
+    public Edificio() {}
 
     public int getEdificioId() {
-        return edificioId;
+        return edificio_id;
     }
 
-    public void setEdificioId(int edificioId) {
-        this.edificioId = edificioId;
+    public void setEdificioId(int edificio_id) {
+        this.edificio_id = edificio_id;
     }
 
     public String getNombre() {
@@ -43,5 +42,39 @@ public class Edificio {
 
     public void setAdministradorId(int administradorId) {
         this.administradorId = administradorId;
+    }
+
+    public void agregarEdificio(int edificio_id, String nombre, String direccion, int administradorId) {
+        this.edificio_id = edificio_id;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.administradorId = administradorId;
+        
+        // Agregar edificio a la base de datos
+    }
+
+    public void modificarEdificio(int edificio_id, String nombre, String direccion, int administradorId) {
+        this.edificio_id = edificio_id;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.administradorId = administradorId;
+        
+        // Modificar edificio en la base de datos
+    }
+
+    public void eliminarEdificio(int edificio_id) {
+        this.edificio_id = 0;
+        this.nombre = "";
+        this.direccion = "";
+        this.administradorId = 0;
+        
+        // Eliminar edificio de la base de datos
+    }
+
+    public List<Departamento> verDepartamentos() {
+        List<Departamento> departamentos = new ArrayList<>();
+        // Buscar departamentos en la base de datos
+        // a implementar con la base de datos
+        return departamentos;
     }
 }

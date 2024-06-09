@@ -1,5 +1,8 @@
 package classes;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ResultadoMensual {
 
     private int anio;
@@ -7,10 +10,9 @@ public class ResultadoMensual {
     private String numero;
     private int piso;
     private double monto;
-    private int edificioId;
+    private int edificio_id;
 
-    public ResultadoMensual() {
-    }
+    public ResultadoMensual() {}
 
     public int getAnio() {
         return anio;
@@ -33,7 +35,11 @@ public class ResultadoMensual {
     }
 
     public int getEdificioId() {
-        return edificioId;
+        return edificio_id;
     }
 
+    public List<ResultadoMensual> expensasPorMes(int anio, int mes, int edificio_id) {
+        // Obtener resultados mensuales de la base de datos
+        return new ArrayList<ResultadoMensual>();
+    }
 }

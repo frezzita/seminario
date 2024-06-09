@@ -8,13 +8,7 @@ public class Expensa {
     private String concepto;
     private int edificioId;
 
-    public Expensa(int expensaId, String fecha, double monto, String concepto, int edificioId) {
-        this.expensaId = expensaId;
-        this.fecha = fecha;
-        this.monto = monto;
-        this.concepto = concepto;
-        this.edificioId = edificioId;
-    }
+    public Expensa() {}
 
     public int getExpensaId() {
         return expensaId;
@@ -50,5 +44,35 @@ public class Expensa {
 
     public int getEdificioId() {
         return edificioId;
+    }
+
+    public void agregarExpensa(int expensaId, String fecha, double monto, String concepto, int edificioId) {
+        this.expensaId = expensaId;
+        this.fecha = fecha;
+        this.monto = monto;
+        this.concepto = concepto;
+        this.edificioId = edificioId;
+
+        // Agregar expensa a la base de datos
+    }
+
+    public void modificarExpensa(int expensaId, String fecha, double monto, String concepto, int edificioId) {
+        this.expensaId = expensaId;
+        this.fecha = fecha;
+        this.monto = monto;
+        this.concepto = concepto;
+        this.edificioId = edificioId;
+
+        // Modificar expensa en la base de datos
+    }
+
+    public void eliminarExpensa(int expensaId) {
+        this.expensaId = 0;
+        this.fecha = "";
+        this.monto = 0;
+        this.concepto = "";
+        this.edificioId = 0;
+
+        // Eliminar expensa de la base de datos
     }
 }

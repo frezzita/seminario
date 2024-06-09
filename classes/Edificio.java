@@ -1,3 +1,5 @@
+package classes;
+
 public class Edificio {
     private int edificioId;
     private String nombre;

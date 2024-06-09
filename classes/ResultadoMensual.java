@@ -1,3 +1,5 @@
+package classes;
+
 public class ResultadoMensual {
 
     private int anio;

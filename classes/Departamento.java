@@ -1,4 +1,4 @@
-
+package classes;
 
 class Departamento {
     private int departamentoId;

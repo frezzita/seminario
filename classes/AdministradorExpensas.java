@@ -1,10 +1,10 @@
-
+package classes;
 
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class AdministradorExpensas {
-    public static void main(String[] args) {
+    public static void iniciar() {
         Scanner scanner = new Scanner(System.in);
 
         Edificio edificio_s21 = new Edificio(0, "Edificio Siglo 21", "Libertador 1234", 0);

@@ -1,3 +1,12 @@
+// Trabajo Práctico 3
+
+Compilación:
+javac *.java
+
+Ejecución
+java main
+------------------------------------
+
 mysql 8.x must be running at port 7788
 
 How to run:

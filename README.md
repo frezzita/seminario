@@ -3,8 +3,10 @@
 Compilación:
 javac *.java
 
-Ejecución
+Ejecución:
 java main
+
+
 ------------------------------------
 
 mysql 8.x must be running at port 7788

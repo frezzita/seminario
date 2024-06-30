@@ -26,6 +26,18 @@ public class ResultadoMensual {
         return numero;
     }
 
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public void setPiso(int piso) {
+        this.piso = piso;
+    }
+
+    public void setMonto(double monto) {
+        this.monto = monto;
+    }
+
     public int getPiso() {
         return piso;
     }
@@ -38,8 +50,15 @@ public class ResultadoMensual {
         return edificio_id;
     }
 
-    public List<ResultadoMensual> expensasPorMes(int anio, int mes, int edificio_id) {
-        // Obtener resultados mensuales de la base de datos
-        return new ArrayList<ResultadoMensual>();
+    public void setAnio(int anio) {
+        this.anio = anio;
+    }
+
+    public void setMes(int mes) {
+        this.mes = mes;
+    }
+
+    public void setEdificioId(int edificio_id) {
+        this.edificio_id = edificio_id;
     }
 }

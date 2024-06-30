@@ -1,11 +1,13 @@
-// Trabajo Práctico 3
+// Trabajo Práctico 4
 
 Compilación:
 javac *.java
 
 Ejecución:
 java main
+java -cp ".;lib\mysql-connector-j-8.4.0.jar" main
 
+mysql password root123
 
 ------------------------------------
 

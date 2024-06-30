@@ -4,17 +4,16 @@ public class main {
     // ejecutar AdministradorExpensas dentro de classes
     public static void main(String[] args) {
         try {
-            // Load the MySQL JDBC driver
+            // Cargar el driver
             Class.forName("com.mysql.cj.jdbc.Driver");
             
-            // Your existing code
             AdministradorExpensas administrador = new AdministradorExpensas();
             administrador.iniciar();
         } catch (ClassNotFoundException e) {
-            System.out.println("MySQL JDBC Driver not found.");
+            System.out.println("No se encontró el driver.");
             e.printStackTrace();
         } catch (Exception e) {
-            System.out.println("An error occurred:");
+            System.out.println("Error:");
             e.printStackTrace();
         }
     }
